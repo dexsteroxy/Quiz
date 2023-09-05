@@ -6,7 +6,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import { RotatingLines } from "react-loader-spinner";
 //for firebase https://www.youtube.com/watch?v=VMSeh2a6FIA&t=271s
 
@@ -18,7 +18,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [age, setAge] = useState("");
+ 
   const [date, setDate] = useState("");
 
   //error messages start
@@ -28,12 +28,12 @@ function Register() {
   const [errPassword, setErrPassword] = useState("");
   const [errCPassword, setErrCPassword] = useState("");
   const [errPhone, setErrPhone] = useState("");
-  const [errAge, setErrAge] = useState("");
+ 
   const [errDate, setErrDate] = useState("");
   const [firebaseErr, setFirebaseErr] = useState("");
-    //loading function start
-    const [loading, setLoading] = useState(false);
-    const [successMsg, setSuccessMsg] = useState("");
+  //loading function start
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
 
   //handle function
   const handleName = (e) => {
@@ -66,10 +66,7 @@ function Register() {
     setErrPhone("");
   };
 
-  const handleAge = (e) => {
-    setAge(e.target.value);
-    setErrAge("");
-  };
+ 
 
   const handleDate = (e) => {
     setDate(e.target.value);
@@ -82,15 +79,13 @@ function Register() {
     if (!clientName) {
       setErrClientName("Enter your name");
     }
-    if (!age) {
-      setErrAge("Your age is required");
-    }
+    
     if (!date) {
       setErrDate("your date of birth is required");
     }
     if (!email) {
       setErrEmail("Your email is required");
-      setFirebaseErr("")
+      setFirebaseErr("");
     } else {
       if (!emailValidation(email)) {
         setErrEmail("Enter a valid email");
@@ -126,11 +121,9 @@ function Register() {
       password.length >= 6 &&
       cpassword &&
       cpassword === password &&
-      age &&
       date &&
       phone.length === 11
     ) {
-    
       setLoading(true);
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -140,11 +133,11 @@ function Register() {
           });
           //signed in
           const user = userCredential.user;
-          
+
           setLoading(false);
           setSuccessMsg("Account Created Successfully!");
           setTimeout(() => {
-           navigate("/login")
+            navigate("/login");
           }, 3000);
           // ..........
         })
@@ -155,13 +148,13 @@ function Register() {
           }
           //...
         });
-      setClientName("");
-      setEmail("");
-      setDate("");
-      setPassword("");
-      setCPassword("");
-      setAge("");
-      setPhone("");
+      // setClientName("");
+      // setEmail("");
+      // setDate("");
+      // setPassword("");
+      // setCPassword("");
+      // setAge("");
+      // setPhone("");
     }
   };
 
@@ -203,7 +196,7 @@ function Register() {
                       {errEmail}
                     </p>
                   )}
-                   {firebaseErr && (
+                  {firebaseErr && (
                     <p className=" text-red-600 text-xs font-semibold tracking-wide flex items-center gap-2 -mt-1.5">
                       {firebaseErr}
                     </p>
@@ -256,21 +249,7 @@ function Register() {
                 </p>
               )}
             </div>
-            <div className="flex flex-col gap-2">
-              <p className="text-sm font-medium">Age</p>
-              <input
-                type="number"
-                onChange={handleAge}
-                value={age}
-                className=" w-full  py-1 border border-zinc-400 px-2 text-base rounded-sm outline-none focus-within:border-cyan-600 focus-within:shadow-amazonInput duration-100"
-              />
 
-              {errAge && (
-                <p className=" text-red-600 text-xs font-semibold tracking-wide flex items-center gap-2 -mt-1.5">
-                  {errAge}
-                </p>
-              )}
-            </div>
             <div className="flex flex-col gap-2">
               <p className="text-sm font-medium">Date of birth</p>
               <input
@@ -298,29 +277,29 @@ function Register() {
             </button>
 
             {loading && (
-                <div className=" flex justify-center">
-                  <RotatingLines
-                    strokeColor="#febd69"
-                    strokeWidth="5"
-                    animationDuration="0.75"
-                    width="50"
-                    visible={true}
-                  />
-                </div>
-              )}
+              <div className=" flex justify-center">
+                <RotatingLines
+                  strokeColor="#febd69"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="50"
+                  visible={true}
+                />
+              </div>
+            )}
 
-{successMsg && (
-                <div>
-                  <motion.p
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className=" mt-2 text-base font-poppins font-semibold text-green-500 border-[1px] border-green-500 px-2 text-center"
-                  >
-                    {successMsg}
-                  </motion.p>
-                </div>
-              )}
+            {successMsg && (
+              <div>
+                <motion.p
+                  initial={{ y: 10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className=" mt-2 text-base font-poppins font-semibold text-green-500 border-[1px] border-green-500 px-2 text-center"
+                >
+                  {successMsg}
+                </motion.p>
+              </div>
+            )}
 
             <p className=" mb-2 mt-4 lg:ml-20 text-[15px] font-medium">
               Already have an account?

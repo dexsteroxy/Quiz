@@ -12,10 +12,10 @@ function Login() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
-  const [date, setDate] = useState("");
+
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
-  const [errDate, setErrDate] = useState("");
+ 
 
   const [userEmailErr, setUserEmailErr] = useState("");
   const [userPassErr, setUserPassErr] = useState("");
@@ -32,10 +32,7 @@ function Login() {
     setErrPassword("");
   };
 
-  const handleDate = (e) => {
-    setDate(e.target.value);
-    setErrDate("");
-  };
+ ;
   const handleLogin = (e) => {
     e.preventDefault();
     if (!email) {
@@ -44,10 +41,8 @@ function Login() {
     if (!password) {
       setErrPassword("Your password is required");
     }
-    if (!date) {
-      setErrDate("Date of birth needed for appropriate questions.");
-    }
-    if (email && password && date) {
+  
+    if (email && password) {
       setLoading(true);
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -81,9 +76,9 @@ function Login() {
             setUserPassErr("Wrong password! try again");
           }
         });
-      setEmail("");
-      setPassword("");
-      setDate("");
+      // setEmail("");
+      // setPassword("")
+      
     }
   };
 
@@ -145,20 +140,7 @@ function Login() {
                   )}
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <p className="text-sm font-medium">Date of birth</p>
-                  <input
-                    type="date"
-                    onChange={handleDate}
-                    value={date}
-                    className=" w-full py-1 border border-zinc-400 px-2 text-base rounded-sm outline-none focus-within:border-cyan-600 focus-within:shadow-amazonInput duration-100"
-                  />
-                  {errDate && (
-                    <p className=" text-red-600 text-xs font-semibold tracking-wide flex items-center gap-2 -mt-1.5">
-                      {errDate}
-                    </p>
-                  )}
-                </div>
+           
 
                 <button
                   onClick={handleLogin}

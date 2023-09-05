@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 
 function Header() {
   
- 
+  const userInfo = useSelector((state) => state.amazonReducer.userInfo);
   const [showAll, setShowAll] = useState(false);
 
   return (
@@ -192,11 +192,17 @@ function Header() {
         {/* =====order start here====== */}
         <Link to="/login">
           <div className=" flex  items-start justify-center headerHover relative">
-           
-            <p className=" text-sm font-semibold hover:border-b-2 hover:border-b-cyan-600 -mt-1 text-whiteText ">
+           {
+            userInfo ? (
+<p className="text-sm font-semibold hover:border-b-2 hover:border-b-cyan-600 -mt-1 text-whiteText"></p>
+            ) : (
+              <p className=" text-sm font-semibold hover:border-b-2 hover:border-b-cyan-600 -mt-1 text-whiteText ">
               Login
             
             </p>
+            )
+           }
+           
           </div>
         </Link>
 {/* when the time comes i will on comment it */}
