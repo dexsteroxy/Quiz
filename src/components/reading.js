@@ -26,4 +26,6 @@
 
 // 8. **Redux**: It uses Redux's `useSelector` to access user information from the Redux state (`state.amazonReducer.userInfo`).
 
-// Overall, this component provides a quiz-like interface, allows users to answer questions, tracks their score, and provides conditional content based on user actions and API availability.
+// Overall, this component provides a quiz-like interface, allows users to answer questions, tracks their score, and provides conditional content based on user actions and API availability
+
+// i now understand it 

@@ -32,7 +32,12 @@ const QuizSite = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setApiError("The API is not available."); // Set error message
+        setApiError(
+          <div>
+            <p className=" mb-4">"The API is not available."</p>
+            <button onClick={handleRefresh} className=" text-base border-2 border-black px-3 text-white bg-amazon_blue hover:bg-amazon_light p-1 rounded-md">Try again</button>
+          </div>
+         ); // Set error message
       });
   }, []);
 
@@ -42,6 +47,11 @@ const QuizSite = () => {
       [currentQuestionIndex]: selectedAnswer,
     });
   };
+
+
+  const handleRefresh = () => {
+     const handleRefresh = window.alert('please dear user this page needs to be refresh manuly')
+  }
 
   useEffect(() => {
     // Calculate the score whenever selectedAnswers changes
@@ -79,33 +89,59 @@ const QuizSite = () => {
     return shuffledArray;
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
-    <div className="container mx-auto px-4 py-8 bg-gray-200 h-[100vh]">
+    <div className=" px-4 py-8 bg-amazon_blue lg:hidden min-h-screen">
+      
       {userInfo ? (
-        <div className="text-right pr-12">
-          <p className="text-3xl font-bold mb-2">
+        <div className="">
+          <p className=" font-bold text-xl text-gray-400">
             Total Score: {score} / {quizData.length}
           </p>
+          <p className=" text-center text-gray-800 mb-6" >..............................................................</p>
         </div>
       ) : (
         <div></div>
       )}
-      <h1 className="text-3xl font-bold mb-4">Quiz Site</h1>
+      {/* <h1 className="text-3xl font-bold mb-4">Quiz Site</h1> */}
 
       {apiError ? ( // Display error message if API is not available
         <div className="text-red-600 text-4xl font-bold text-center">
           <p>{apiError}</p>
         </div>
       ) : currentQuestionIndex < quizData.length ? (
-        <div className="mb-6 p-4 border rounded-lg">
+        <div className="mb-6 p-4  rounded-lg">
           {userInfo ? (
             <div>
-              <h2 className="text-xl font-semibold mb-2">
+              <h2 className="text-xl font-semibold mb-2 text-gray-300">
                 {quizData[currentQuestionIndex].question}
               </h2>
-              <ul className="list-none">
+              <ul className="list-none mt-12 ">
                 {quizData[currentQuestionIndex].answers.map((answer, idx) => (
-                  <li key={idx} className="my-2">
+                  <li key={idx} className="my-2 border-4 rounded-lg border-cyan-950 text-white   p-2 mb-5">
                     <input
                       type="radio"
                       id={`answer-${idx}`}
@@ -113,7 +149,7 @@ const QuizSite = () => {
                       value={answer}
                       checked={selectedAnswers[currentQuestionIndex] === answer}
                       onChange={() => handleAnswerSelect(answer)}
-                      className={`cursor-pointer ${
+                      className={`cursor-pointer ml-2 ${
                         selectedAnswers[currentQuestionIndex]
                           ? answer ===
                             quizData[currentQuestionIndex].correct_answer
@@ -127,7 +163,7 @@ const QuizSite = () => {
                       className={`ml-2 cursor-pointer ${
                         selectedAnswers[currentQuestionIndex] &&
                         answer === quizData[currentQuestionIndex].correct_answer
-                          ? "bg-green-600 px-4 rounded-sm"
+                          ? " text-green-600  rounded-sm"
                           : ""
                       }`}
                     >
@@ -150,15 +186,15 @@ const QuizSite = () => {
           )}
           {userInfo ? (
             <div className="mt-4 flex justify-center items-center space-x-6 md:space-x-20">
-              <button
+              {/* <button
                 onClick={previousQuestion}
-                className=" bg-amazon_blue hover:bg-amazon_light text-white font-bold py-2 px-4 rounded mr-2"
+                className=" bg-blue-800 hover:bg-amazon_light text-white font-bold py-2 px-4 rounded mr-2"
               >
                 Back
-              </button>
+              </button> */}
               <button
                 onClick={nextQuestion}
-                className=" bg-amazon_blue hover:bg-amazon_light text-white font-bold py-2 px-4 rounded"
+                className=" bg-blue-800 active:bg-blue-950 text-white font-bold p-6 px-12 rounded-3xl "
               >
                 Next
               </button>

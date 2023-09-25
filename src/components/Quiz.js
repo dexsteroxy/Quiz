@@ -5,8 +5,8 @@ import QuizSite from "../Axios/Axios";
 function Quiz() {
   return (
     <div>
-      <Header />
-
+     
+<Header/>
      <QuizSite/>
     </div>
   );

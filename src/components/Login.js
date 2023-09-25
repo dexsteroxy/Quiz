@@ -8,14 +8,13 @@ import { useDispatch } from "react-redux";
 
 function Login() {
   const auth = getAuth();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
 
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
- 
 
   const [userEmailErr, setUserEmailErr] = useState("");
   const [userPassErr, setUserPassErr] = useState("");
@@ -32,7 +31,6 @@ function Login() {
     setErrPassword("");
   };
 
- ;
   const handleLogin = (e) => {
     e.preventDefault();
     if (!email) {
@@ -41,7 +39,7 @@ function Login() {
     if (!password) {
       setErrPassword("Your password is required");
     }
-  
+
     if (email && password) {
       setLoading(true);
       signInWithEmailAndPassword(auth, email, password)
@@ -78,7 +76,6 @@ function Login() {
         });
       // setEmail("");
       // setPassword("")
-      
     }
   };
 
@@ -89,9 +86,9 @@ function Login() {
         <div className=" w-full bg-gray-100 h-screen   pb-10">
           {successMsg ? (
             <div className=" w-full flex justify-center items-center py-12">
- <p className=" border-[1px] border-green-600 text-green-500 font-poppins text-lg font-semibold px-6 py-2">
-              {successMsg}
-            </p>
+              <p className=" border-[1px] border-green-600 text-green-500 font-poppins text-lg font-semibold px-6 py-2">
+                {successMsg}
+              </p>
             </div>
           ) : (
             <form className="md:w-[550px] sm:w-[360px] xs:w-[300px] mx-auto flex flex-col items-center">
@@ -139,8 +136,6 @@ function Login() {
                     </p>
                   )}
                 </div>
-
-           
 
                 <button
                   onClick={handleLogin}

@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './Header'
 
 import Register from './Register'
-import Quiz from './Quiz'
+
 
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
  <Header/>
 
  <Register/>
-
+{/* djksd djhd vldj didfis dfdka dddjka d djksdjks dksjkscdkcksdcksdcjskjdckdscjkscjd */}
  
 
     </div>
