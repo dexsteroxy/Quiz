@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import Quiz from './components/Quiz';
+import Total from './components/Total';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 <Route path='/profile' element={<Profile/>}></Route>
 <Route path='/login' element={<Login/>}></Route>
 <Route path='/quiz' element={<Quiz/>}></Route>
+<Route path='/total' element={<Total/>}></Route>
 
 
   </Routes>
